@@ -1,0 +1,116 @@
+<html>
+
+<head>
+    <title>31/7/24</title>
+    <script src="https://kit.fontawesome.com/f595e9a7d3.js" crossorigin="anonymous"></script>
+    <style>
+        .hide {
+            display: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        #oneTime h3 ,h2{
+            font-size: 50px;
+            text-align: center;
+        }
+
+        #oneTime input{
+            border: none;
+            border-bottom: 2px solid black;
+            height: 30px;
+            font-size: 20px;
+            text-align: center;
+            padding: 20px;
+        }
+        .center{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        button{
+            height: 20px;
+            width:100px;
+            border-radius:20px ;
+            color: aliceblue;
+            background-color: black;
+            width: 150px;
+            height: 40px;
+            font-size: 20px;
+            
+        }
+        .edit{
+           display: inline;
+           display: flex;
+           justify-content: center;
+        }
+        #error{
+            color:red;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        #normalName{
+            color:aqua;
+        }
+        i{
+            color:white;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="oneTime">
+        <h3>Please enter your name</h3>
+        <div class="center">
+            <input type="text" id="userName" placeholder="enter your name"><br>
+            <div id="error"></div>
+            <button onclick="userInput()" id="submit">Submit</button>
+        </div>
+    </div>
+    <div id="normalView" class="hide">
+        <h2>--- Welcome to our website Mr./Mrs <span id="normalName"></span> ---</h2>
+        <div class="edit">
+        <button onclick="resetting()" id="reset"><i class="fa-solid fa-pen-to-square"></i></button>
+    </div></div>
+    <script>
+        window.addEventListener("load", function () {
+            if (localStorage.getItem("userName") !== null) {
+                document.getElementById("oneTime").classList.add("hide")
+                document.getElementById("normalView").classList.remove("hide")
+                document.getElementById("normalName").innerHTML = localStorage.getItem("userName");
+            }
+        })
+        function userInput() {
+            if (document.getElementById("userName").value == ""){
+                document.getElementById("error").innerHTML="please enter a name"
+                return;
+            }
+               
+            // if(localStorage.getItem("userName") !== null){
+            //     document.getElementById("error").innerHTML="please enter a name";
+            //     return;
+            // }
+            else{
+            localStorage.setItem("userName", document.getElementById("userName").value);
+            document.getElementById("oneTime").classList.add("hide");
+            document.getElementById("normalName").innerHTML = localStorage.getItem("userName");
+            document.getElementById("normalView").classList.remove("hide");}
+        }
+        function resetting(){
+            document.getElementById("oneTime").classList.remove("hide")
+            document.getElementById("normalView").classList.add("hide")
+        }
+    </script>
+</body>
+
+</html>
