@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>2/8/24</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url(images/leaf.jpeg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100lvh;
+            gap: 20px;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-direction: column;
+            padding: 15px 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, .3);
+            box-shadow: 0px 0px 7px 1px white;
+            height: 250px;
+        }
+
+        i {
+            color: aliceblue;
+        }
+
+        .time h1 {
+            color: aliceblue;
+            font-family: monospace;
+            font-size: 50px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+        }
+
+        button {
+            background-color: transparent;
+            border: none;
+            font-size: 40px;
+        }
+
+        .laps {
+            width: 30%;
+            
+        }
+
+        ul {
+            padding: 5px 30px;
+            height: 100px;
+            overflow-x: hidden;
+            overflow-y: auto;
+           list-style: circle;
+        }
+        
+        ul::-webkit-scrollbar{
+            background-color: transparent;
+            box-shadow: inset 0px 0px 2px 1px white;
+            border-radius: 15px;
+        }
+        ul::-webkit-scrollbar-thumb{
+            background-color: rgba(0, 0, 0, .6);
+            border-radius: 15px;
+        }
+        li {
+            color: white;
+            font-size: 10px;
+            display: flex;
+            font-size: 20px;
+            list-style: circle;
+        }
+
+        .space {
+            display: inline-block;
+            width: 100%;
+            text-align: right;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/f595e9a7d3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="time">
+            <h1 id="time">00 : 00 : 00 : 000 </h1>
+        </div>
+        <div class="controls">
+            <button onclick="stopWatch()" id="play"><i class="fa-solid fa-play"></i></button>
+            <button onclick="stop()" id="pause" style="display: none;"><i class="fa-solid fa-pause"></i></button>
+            <button onclick="refresh()" id="reset"><i class="fa-solid fa-rotate-right"></i></button>
+            <button onclick="lapFun()" id="flag"><i class="fa-regular fa-flag"></i></button>
+            <button onclick="clearLaps()" id="broom"><i class="fa-solid fa-broom"></i></button>
+        </div>
+
+    </div>
+    <div class="laps">
+        <hr color="white" width="100%" size=".1px">
+        <ul id="lapList"></ul>
+    </div>
+    <script>
+        let jsmilli = parseInt(document.querySelector("#time").innerHTML.slice(15));
+        let jssec = parseInt(document.querySelector("#time").innerHTML.slice(10, 12));
+        let jsmin = parseInt(document.querySelector("#time").innerHTML.slice(5, 7));
+        let jshour = parseInt(document.querySelector("#time").innerHTML.slice(0, 2));
+        let play = document.querySelector("#play");
+        let pause = document.querySelector("#pause");
+        let flag = document.querySelector("#flag");
+        let reset = document.querySelector("#reset");
+        let broom = document.querySelector("#broom");
+        let interval = null;
+        let textnode;
+        let laps = 1;
+        
+
+        function stopWatch() {
+            play.style.display = "none";
+            pause.style.display = "block";
+            interval = setInterval(start, 10);
+        }
+        function stop() {
+            play.style.display = "block";
+            pause.style.display = "none";
+            clearInterval(interval);
+        }
+        function start() {
+            jsmilli += 10;
+            if (jsmilli == 1000) {
+                jssec++;
+                jsmilli = 0;
+            }
+            if (jssec == 60) {
+                jsmin++;
+                jssec = 0;
+            }
+            if (jsmin == 60) {
+                jshour++;
+                jsmin == 0;
+            }
+            let hour = jshour;
+            let min = jsmin;
+            let sec = jssec;
+            let milli = jsmilli;
+            if (milli < 10) {
+                milli = "00" + milli;
+            }
+            else if (milli < 100) {
+                milli = "0" + milli;
+            }
+            if (sec < 10) {
+                sec = "0" + sec;
+            }
+            if (min < 10) {
+                min = "0" + min;
+            }
+            if (hour < 10) {
+                hour = "0" + hour;
+            }
+
+            document.querySelector("#time").innerHTML = `${hour} : ${min} : ${sec} : ${milli}`;
+        }
+        function refresh() {
+            document.querySelector("#time").innerHTML = "00 : 00 : 00 : 000";
+            clearInterval(interval);
+            play.style.display = "block";
+            pause.style.display = "none";
+            let ul = document.querySelector("#lapList").innerHTML = "";
+            laps = 1;
+        }
+        function lapFun() {
+
+            let ul = document.querySelector("#lapList");
+            let li = document.createElement("li");
+            if (laps < 10) {
+                li.innerHTML = `*0${laps}lap <div class="space">${document.querySelector("#time").innerHTML}</div>`;
+            }
+            else {
+                li.innerHTML = `${laps} <div class="space">${document.querySelector("#time").innerHTML}</div>`;
+            }
+            ul.appendChild(li);
+            laps++;
+        }
+        function clearLaps() {
+            let ul = document.querySelector("#lapList").innerHTML = "";
+            laps = 1
+        }
+    </script>
+</body>
+
+</html>
