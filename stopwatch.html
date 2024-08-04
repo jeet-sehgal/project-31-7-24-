@@ -193,9 +193,10 @@
                 li.innerHTML = `*0${laps}lap <div class="space">${document.querySelector("#time").innerHTML}</div>`;
             }
             else {
-                li.innerHTML = `${laps} <div class="space">${document.querySelector("#time").innerHTML}</div>`;
+                li.innerHTML = `*${laps}lap <div class="space">${document.querySelector("#time").innerHTML}</div>`;
             }
             ul.appendChild(li);
+            ul.scrollTop = ul.scrollHeight;
             laps++;
         }
         function clearLaps() {
