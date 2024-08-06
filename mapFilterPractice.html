@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <title>6/8/24</title>
+    </head>
+    <body>
+        <script>
+            let jeet=[0,1,2,3,4,5];
+            let jeet1=jeet.map((element)=>{
+                return element*2;
+            })
+            console.log(jeet1);
+            
+            let name=["jeet","vivek","shubham","hello"];
+            let upperCaseString=name.map((element)=>element.toUpperCase());
+            console.log(upperCaseString);
+
+            let exclamation=name.map((ele)=>ele+="!");
+            console.log(exclamation);
+
+            let people=[
+                {
+                    name:"jeet",
+                    age:56
+                },
+                {
+                    name:"shubham",
+                    age:34
+                },
+                {
+                    name:"vivek",
+                    age:12
+                },
+                {
+                    name:"kartik",
+                    age:2
+                },
+                {
+                    name:"bhivek",
+                    age:45
+                }
+            ];
+            vivek=people.filter((ele)=>ele.age>25);
+            console.log(vivek);
+        
+            let odd=[];
+            let even = jeet.filter((ele)=>{
+                if (ele%2==0)return ele;
+                else odd.push(ele);
+            })
+            console.log("even  : ",even);
+            console.log("odd  : ",odd);
+
+            let string5=name.filter((ele)=>ele.length>=5);
+            console.log(string5);
+
+            let vote=people.filter((ele)=>ele.age>=18);
+            console.log(vote);
+
+            let products=[
+                {
+                    name:"mobile",
+                    price:60,
+                    category:"electronic"
+                },
+                {
+                    name:"tv",
+                    price:55,
+                    category:"electronic"
+                },
+                {
+                    name:"broom",
+                    price:20,
+                    category:"clean"
+                },
+                {
+                    name:"cup",
+                    price:6,
+                    category:"kitchen"
+                }
+            ];
+            let cheap=products.filter((ele)=>ele.price<50);
+            console.log(cheap);
+        </script>
+    </body>
+</html>
