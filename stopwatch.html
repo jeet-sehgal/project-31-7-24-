@@ -153,7 +153,7 @@
             }
             if (jsmin == 60) {
                 jshour++;
-                jsmin == 0;
+                jsmin =0;
             }
             let hour = jshour;
             let min = jsmin;
@@ -184,6 +184,10 @@
             pause.style.display = "none";
             let ul = document.querySelector("#lapList").innerHTML = "";
             laps = 1;
+            jshour=0;
+            jsmin=0;
+            jssec=0;
+            jsmilli=0;
         }
         function lapFun() {
 
