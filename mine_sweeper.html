@@ -29,7 +29,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 40px;
+            gap: 20px;
             flex-direction: column;
             background-color: #122932;
             padding: 20px;
@@ -90,9 +90,14 @@
         #bombcount {
             color: red;
         }
-        #youWin{
+
+        #youWin {
             color: yellow;
             font-size: 20px;
+        }
+
+        .highScore {
+            color: #6AD5CB;
         }
     </style>
     <script src="https://kit.fontawesome.com/f595e9a7d3.js" crossorigin="anonymous"></script>
@@ -103,31 +108,39 @@
         <div class="heading">
             <h1><span class="red">MINE</span>SWEEPER</h1>
         </div>
+        <div class="highScore">
+            <h3>High Score : <span id="highScore"></span></h3>
+        </div>
         <div class="menu">
-            <h3 >Score : <span id="score">0</span>Bomb : <span id="bombcount"></span></h3>
+
+            <h3>Score : <span id="score">0</span>Bomb : <span id="bombcount"></span></h3>
         </div>
         <div class="playingArea" id="playingArea">
         </div>
+        <div class="hide" id="gameOver">
+            <div>
+                <h1 id="win">Game <span class="red">Over!!!</span></h1>
+                <h3>Score : <span id="score1"></span>
+            </div>
+            <div>
+                <button style="background-color: transparent;border: none; color: aliceblue;" onclick="reset()">
+                    <h3>Try again <i class="fa-sharp-duotone fa-solid fa-rotate-right" style="color: aliceblue;"></i>
+                    </h3>
 
-    </div>
-    <div class="hide" id="gameOver">
-        <div >
-            <h1 id="win">Game <span class="red">Over!!!</span></h1>
-            <h3>Score : <span id="score1"></span>
+                </button>
+            </div>
         </div>
-        <div>
-            <button style="background-color: transparent;border: none; color: aliceblue;" onclick="reset()">
-                <h3>Try again <i class="fa-sharp-duotone fa-solid fa-rotate-right" style="color: aliceblue;"></i></h3>
+    </div>
 
-            </button>
-        </div>
-    </div>
     <script>
         totalBox = 63;
         button = null;
+        
 
         window.addEventListener("load", () => {
-
+            if (localStorage.getItem("high")==null){
+                localStorage.setItem("high","0");
+            }
             for (i = 1; i <= totalBox; i++) {
                 button = document.createElement("button")
                 box = document.createElement("div").appendChild(button);
@@ -140,7 +153,6 @@
             playing = document.querySelectorAll("button");
             for (i = 1; i <= 15; i++) {
                 select = Math.floor(Math.random() * totalBox);
-                console.log(select);
                 playing[select].setAttribute("data-bomb", "1");
                 playing[select].setAttribute("id", "bomb");
             }
@@ -154,7 +166,7 @@
                         //ele.innerHTML='<i class="fa-sharp-duotone fa-solid fa-bomb" id="bomb"></i>';
 
 
-                        
+
                         bomb.forEach((element) => {
                             element.style.backgroundColor = "red";
                             element.innerHTML = '<i class="fa-sharp-duotone fa-solid fa-bomb" id="bomb"></i>';
@@ -162,32 +174,41 @@
                         })
                     }
                     else {
-                        if (ele.innerHTML==""){
+                        if (ele.innerHTML == "") {
                             score++;
                         }
                         ele.style.backgroundColor = "green"
                         ele.innerHTML = '<i class="fa-sharp-duotone fa-solid fa-flag" id="flag"></i>'
-                         
+
                     }
                     document.querySelector("#score").innerHTML = score;
                     document.querySelector("#score1").innerHTML = score;
-                    if (score==totalBox-bomb.length){
-                        document.querySelector("#win").innerHTML='You Win <i class="fa-sharp fa-solid fa-trophy" id="youWin"></i>';
-                        setTimeout(gameOver,100);
+                    if (score == totalBox - bomb.length) {
+                        document.querySelector("#win").innerHTML = 'You Win <i class="fa-sharp fa-solid fa-trophy" id="youWin"></i>';
+                        setTimeout(gameOver, 100);
                     }
                 })
             })
-        })
+            
+        document.getElementById("highScore").innerHTML=localStorage.getItem("high")
+        }   
+
+
+        )
         function gameOver() {
-            document.querySelector("#main").classList.add("hide")
+            document.querySelector(".playingArea").classList.add("hide")
             document.querySelector("#gameOver").classList.add("show")
+            if (localStorage.getItem("high")<score){
+                localStorage.setItem("high",score)
+                document.getElementById("highScore").innerHTML=localStorage.getItem("high")
+            }
         }
         function reset() {
-            document.querySelector("#gameOver").classList.add("hide")
-            document.querySelector("#gameOver").classList.remove("show")
+            // document.querySelector("#gameOver").classList.add("hide")
+            // document.querySelector("#gameOver").classList.remove("show")
 
-            // document.querySelector("#main").classList.add("show")
-            document.querySelector("#main").classList.remove("hide")
+            // // document.querySelector("#main").classList.add("show")
+            // document.querySelector("#main").classList.remove("hide")
             location.reload();
 
         }
