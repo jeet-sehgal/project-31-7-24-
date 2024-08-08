@@ -162,9 +162,12 @@
                         })
                     }
                     else {
+                        if (ele.innerHTML==""){
+                            score++;
+                        }
                         ele.style.backgroundColor = "green"
                         ele.innerHTML = '<i class="fa-sharp-duotone fa-solid fa-flag" id="flag"></i>'
-                        score++;
+                         
                     }
                     document.querySelector("#score").innerHTML = score;
                     document.querySelector("#score1").innerHTML = score;
