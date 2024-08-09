@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <title>9/8/24</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            nav{
+                padding:20px 60px;
+                background-color: #44BBA4;
+                color: aliceblue;
+                font-size: 30px;
+                font-weight: 600;
+                font-family: arial;
+                border-bottom: 10px double white;
+            }
+            .container{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap:wrap;
+                gap:20px;
+                height: 80lvh;
+                
+            }
+            .card{
+                padding:40px;
+                box-shadow: inset 1px 1px 5px 1px rgba(128, 128, 128, 0.568);
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                gap:20px;
+            }
+            .card:hover{
+                transform: scale(1.1);
+                transition: transform 0.3s linear;
+            }
+
+            .heading{
+                color:#44BBA4;
+                /* text-decoration: underline; */
+            }
+            #icon1,#icon2,#icon3{
+                display: none;
+            }
+
+        </style>
+        <script src="https://kit.fontawesome.com/f595e9a7d3.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav>
+            <h1>Mutual Funds <i class="fa-solid fa-sack-dollar"></i></h1>
+        </nav>
+        <div class="container">
+            <div id="card1" class="card">
+                <div>
+                    <h1 id="heading1" class="heading">SBI Contra Fund <i class="fa-solid fa-arrow-trend-up" id="icon1"></i></h1>
+                </div>
+                <div>
+                    <h3>Date : <span id="date1"></span></h3>
+                    <h3>Price : <span id="price1"></span></h3>
+                </div>
+            </div>
+            <div id="card2" class="card">
+                <div>
+                    <h1 id="heading2" class="heading">Aditya Birla Sun <i class="fa-solid fa-arrow-trend-up" id="icon2"></i></h1>
+                </div>
+                <div>
+                    <h3>Date : <span id="date2"></span></h3>
+                    <h3>Price : <span id="price2"></span></h3>
+                </div>
+            </div>
+            <div id="card3" class="card">
+                <div>
+                    <h1 id="heading3" class="heading">Parag Parikh Flexi <i class="fa-solid fa-arrow-trend-up" id="icon3"></i></h1>
+                </div>
+                <div>
+                    <h3>Date : <span id="date3"></span></h3>
+                    <h3>Price : <span id="price3"></span></h3>
+                </div>
+            </div>
+        </div>
+        <script>
+            async function set(url,date,price){
+                data=await fetch(url);
+                data=await data.json()
+                date.innerHTML=data.data[0].date;
+                price.innerHTML=data.data[0].nav;
+                date.innerHTMl=0;
+            }
+            set("https://api.mfapi.in/mf/119724/latest",document.querySelector("#date1"),document.querySelector("#price1"))
+            set("https://api.mfapi.in/mf/130295/latest",document.querySelector("#date2"),document.querySelector("#price2"))
+            set("https://api.mfapi.in/mf/122640/latest",document.querySelector("#date3"),document.querySelector("#price3"))
+            document.querySelector("#card1").addEventListener("mouseover",()=>{
+                document.querySelector("#heading1").style.textDecoration="underline"
+                document.querySelector("#icon1").style.display="inline";
+            })
+            document.querySelector("#card1").addEventListener("mouseout",()=>{
+                document.querySelector("#heading1").style.textDecoration="none"
+                document.querySelector("#icon1").style.display="none";
+            })
+            document.querySelector("#card2").addEventListener("mouseover",()=>{
+                document.querySelector("#heading2").style.textDecoration="underline"
+                document.querySelector("#icon2").style.display="inline";
+            })
+            document.querySelector("#card2").addEventListener("mouseout",()=>{
+                document.querySelector("#heading2").style.textDecoration="none"
+                document.querySelector("#icon2").style.display="none";
+            })
+            document.querySelector("#card3").addEventListener("mouseover",()=>{
+                document.querySelector("#heading3").style.textDecoration="underline"
+                document.querySelector("#icon3").style.display="inline";
+            })
+            document.querySelector("#card3").addEventListener("mouseout",()=>{
+                document.querySelector("#heading3").style.textDecoration="none"
+                document.querySelector("#icon3").style.display="none";
+            })
+        </script>
+    </body>
+</html>
