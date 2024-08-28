@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Bebas Neue", sans-serif;
+}
+body{
+    background-color: #070724;
+    background-image: url(images/background-stars.svg);
+    height: 100lvh;
+}
+nav{
+    display: flex;
+    padding: 5px 25px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.218);
+    
+}
+nav .logo{
+    color: aliceblue;
+    font-size: 30px;
+    display: flex;
+    align-items: start;
+    gap: 5px;
+}
+input{
+    display: none;
+}
+nav button{
+    background-color: transparent;
+    border: none;
+   
+}
+nav .logo span{
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    background-image: url(images/earth.gif);
+    background-position: center center;
+    background-size: 85px;
+    margin-top: 3px;
+    border-radius: 100px;
+}
+ul#planets li{
+    /* display: inline; */
+    color: aliceblue;
+    list-style: none;
+    padding: 20px;
+    width: 100vw;
+   display: flex;
+   justify-content: space-between;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.218);
+    font-size: 20px;
+    align-items: center;
+    
+    padding-left: 40px;
+}
+li::after{
+    content: "";
+    position: absolute;
+    left: 10px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+    
+}
+li#p1::after{
+    background-color: #def4fc;
+}
+li#p2::after{
+    background-color: #e2bb74;
+}
+li#p3::after{
+    background-color: #4dcae9;
+}
+li#p4::after{
+    background-color: #ea613f;
+}
+li#p5::after{
+    background-color: #d99f70;
+}
+li#p6::after{
+    background-color: #e8bb62;
+}
+li#p7::after{
+    background-color: #5dddc4;
+}
+li#p8::after{
+    background-color: #4373e5;
+}
+ul#planets{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: -100%;
+    left: 0;
+    height: 100lvh;
+    width: 100vw;
+    align-items: center;
+    background-color: rgba(0, 0, 0,1);
+    transition: all 0.4s;
+    z-index: 1;
+
+}
+#cross{
+    width: 20px;
+    align-self: flex-end;
+    margin-right: 10px;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.infoOptions{
+    color: aliceblue;
+}
+.infoOptions ul{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 5px 0px;
+    list-style: none;
+    /* text-align: center; */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.218);
+}
+.infoOptions ul li{
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    flex-direction: column;
+}
+
+.infoLink::after{
+    content: "";
+    position: relative;
+    bottom: 0px;
+    left: 0;
+    width: var(--width,0);
+    height: 1px;
+    background-color: var(--color,white);
+    transition: all .2s;
+}
+
+.content .img{
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .img::before{
+    content: "";
+    height: 50px;
+    width: 40px;
+    display: inline-block;
+    position: fixed;
+    /* right: 30px; */
+    top: 220px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-image: var(--src,"");
+    background-size: 40px;
+}
+.content .name h2{
+    color: aliceblue;
+    font-weight: 200;
+}
+.content p{
+    color: aliceblue;
+    text-align: center;
+    padding: 10px;
+    
+    height: 150px;
+}
+.moreInfo{
+    color: rgba(240, 248, 255, 0.403);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5px;
+}
+.moreInfo .inner{
+    border: 1px solid rgba(240, 248, 255, 0.403);
+    padding: 5px 15px;
+    width: 80vw;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.value{
+    color: aliceblue;
+    font-size: 17px;
+    transform: scaleY(1.3);
+}

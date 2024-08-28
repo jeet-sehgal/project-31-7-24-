@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planet facts</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+
+        <div class="logo">THE PLANETS <span></span></div>
+        <div class="links">
+            <button id="ham" onclick="navMethod()"><img src="images/icon-hamburger.svg" alt="" id="hamImg"></button>
+            <ul id="planets">
+                <button onclick="navMethod()" id="cross"><img src="images/x-solid.svg" alt=""></button>
+                <li id="p1" data-key="0">MERCURY <img src="images/icon-chevron.svg" alt=""></li>
+                <li id="p2" data-key="1">VENUS <img src="images/icon-chevron.svg" alt=""></li>
+                <li id="p3" data-key="2">EARTH <img src="images/icon-chevron.svg" alt=""></li>
+                <li id="p4" data-key="3">MARS <img src="images/icon-chevron.svg" alt=""></li>
+                <li id="p5" data-key="4">JUPITER <img src="images/icon-chevron.svg" alt=""></li>
+                <li id="p6" data-key="5">SATURN <img src="images/icon-chevron.svg" alt=""></li>
+                <li id="p7" data-key="6">URANUS <img src="images/icon-chevron.svg" alt=""></li>
+                <li id="p8" data-key="7">NEPTUNE <img src="images/icon-chevron.svg" alt=""></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="main">
+        <div class="infoOptions">
+            <ul>
+                <li data-key="1">OVERVIEW</li>
+                <li data-key="2">STRUCTURE</li>
+                <li data-key="3">SURFACE</li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="img"><img src="" alt="" id="contentImg"></div>
+            <div class="name"><h2 id="name"></h2></div>
+            <div class="para"><p id="para"></p></div>
+            <div class="moreInfo">
+                <div class="inner">ROTATION TIME <div id="value1" class="value"></div></div>
+                <div class="inner">REVOLUTION TIME <div id="value2" class="value"></div></div>
+                <div class="inner">RADIUS <div id="value3" class="value"></div></div>
+                <div class="inner">AVREAGE TEMP <div id="value4" class="value"></div></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
