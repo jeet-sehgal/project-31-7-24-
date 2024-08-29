@@ -101,15 +101,24 @@ infoOption.forEach(ele=>{
             document.querySelector(".infoLink").style.setProperty("--width","100%");
             document.querySelector(".infoLink").style.setProperty("--color",data.color[localStorage.getItem("planetSel")])
             change(localStorage.getItem("planetSel"))
+            
         }
     })
 })
+let last;
 solarSystem=document.querySelectorAll("nav li");
 solarSystem.forEach(ele=>{
+    
     ele.addEventListener("click",()=>{
         navMethod();
+        if(last)
+            last.style.setProperty("--line","0px")
         localStorage.setItem("planetSel",ele.getAttribute("data-key"));
         fixed(ele.getAttribute("data-key"));
         change(ele.getAttribute("data-key"));
+        ele.style.setProperty("--line","40px");
+        last=ele;
+        
+        // if(document.querySelector("nav ul").style.getPropertyValue("position")=="static")
     })
 })

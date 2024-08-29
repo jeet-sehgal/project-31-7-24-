@@ -96,7 +96,7 @@ ul#planets{
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: -100%;
+    top: -100lvh;
     left: 0;
     height: 100lvh;
     width: 100vw;
@@ -189,6 +189,7 @@ ul#planets{
     display: grid;
     grid-template-columns: 1fr;
     gap: 5px;
+    place-items: center;
 }
 .moreInfo .inner{
     border: 1px solid rgba(240, 248, 255, 0.403);
@@ -199,8 +200,162 @@ ul#planets{
     justify-content: space-between;
     align-items: center;
 }
+#name{
+    text-align: center;
+}
 .value{
     color: aliceblue;
     font-size: 17px;
     transform: scaleY(1.3);
+}
+@media screen and (min-width:769px){
+    nav{
+        padding: 5px 35px;
+        
+    }
+    nav .logo{
+        font-size: 32px;
+        gap: 10px;
+    }
+    nav button{
+        display: none;
+    }
+    ul#planets li{
+        /* display: inline; */
+        color: aliceblue;
+        list-style: none;
+        padding: 0px;
+        justify-content:center;
+        /* width: 100vw; */
+       /* display: flex;
+       justify-content: space-between; */
+        border-bottom: 0px solid rgba(255, 255, 255, 0.218);
+        font-size: 15px;
+        
+        text-align: center;
+        align-items: end;
+        width: 40px;
+        padding-left: 0px;
+    }
+    li img{
+        display: none;
+    }
+    li::after{
+        display: none
+        ;
+    }
+    li:not(nav ul li)::after{
+        content: "";
+        position:fixed;
+        /* right: 500px; */
+
+        display: inline-block;
+        width: 50px;
+        height: 2px;
+        /* display: none; */
+        border-radius: 50%;
+        margin-right: 0px;
+        
+    }
+    .content{
+        gap: 30px;
+    }
+    #para{
+        width: 400px;
+        font-size: 16px;
+    }
+    .text{
+        margin-top: 20px;
+    }
+    #name{
+        font-size: 28px;
+    }
+    .content .img{
+        width: 220px;
+    }
+    ul#planets li::before{
+        content: "";
+        position: fixed;
+        width:var(--line,0px);
+        height: 2px;
+        display: inline-block;
+        transition: all .4s;
+        
+    }
+    li#p1::before{
+        background-color: #def4fc;
+    }
+    li#p2::before{
+        background-color: #e2bb74;
+    }
+    li#p3::before{
+        background-color: #4dcae9;
+    }
+    li#p4::before{
+        background-color: #ea613f;
+    }
+    li#p5::before{
+        background-color: #d99f70;
+    }
+    li#p6::before{
+        background-color: #e8bb62;
+    }
+    li#p7::before{
+        background-color: #5dddc4;
+    }
+    li#p8::before{
+        background-color: #4373e5;
+    }
+    ul#planets{
+       
+        flex-direction: row;
+        position: static;
+       justify-content: end;
+       gap: 15px;
+       align-items: center;
+        height: fit-content;
+        width: 50vw;
+       
+        background-color: transparent;
+    
+    }
+    #cross{
+        width: 20px;
+        align-self: flex-end;
+        margin-right: 10px;
+    }
+    .content{
+        display: flex;
+        flex-direction: row;
+    }
+    .moreInfo{
+        grid-template-columns: repeat(2,1fr);
+        width: 70vw;
+        margin: auto auto;
+    }
+    .moreInfo .inner{
+        width: 35vw;
+        font-size: 15px;
+        padding :10px 15px;
+    }
+    
+    .value{
+        color: aliceblue;
+        font-size: 22px;
+        transform: scaleY(1.3);
+    }
+    .content .img::before{
+        content: "";
+        height: 50px;
+        width: 40px;
+        display: inline-block;
+        position: relative;
+        /* right: 30px; */
+        top: 50px;
+        left: 110px;
+        /* transform: translate(40%,40%); */
+        background-image: var(--src,"");
+        background-size: 40px;
+    }
+    
 }
